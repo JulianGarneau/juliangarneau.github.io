@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Julian Garneau – Researcher</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Personal academic webpage of Julian Garneau." />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --bg-alt: #ffffff;
+      --accent: #0066cc;
+      --text-main: #222222;
+      --text-muted: #666666;
+      --border: #dddddd;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Layout */
+    .page {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 280px;
+      background: #111827;
+      color: #e5e7eb;
+      padding: 32px 24px;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .sidebar-header {
+      text-align: left;
+    }
+
+    .name {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin: 0 0 4px 0;
+    }
+
+    .title {
+      font-size: 0.95rem;
+      color: #9ca3af;
+      margin-bottom: 8px;
+    }
+
+    .affiliation {
+      font-size: 0.9rem;
+      color: #9ca3af;
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 2px solid #374151;
+      margin-bottom: 12px;
+    }
+
+    .profile-pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .sidebar-section-title {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #9ca3af;
+      margin-bottom: 6px;
+    }
+
+    .nav {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 0.92rem;
+    }
+
+    .nav li {
+      margin-bottom: 6px;
+    }
+
+    .nav a {
+      color: #e5e7eb;
+      text-decoration: none;
+      padding: 4px 0;
+      display: inline-block;
+    }
+
+    .nav a:hover {
+      color: #60a5fa;
+    }
+
+    .sidebar-links {
+      font-size: 0.9rem;
+    }
+
+    .sidebar-links a {
+      display: block;
+      margin-bottom: 4px;
+      color: #e5e7eb;
+    }
+
+    .sidebar-links a span {
+      color: #9ca3af;
+      font-size: 0.85rem;
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+      font-size: 0.75rem;
+      color: #6b7280;
+    }
+
+    /* Main content */
+    .main {
+      margin-left: 280px;
+      width: 100%;
+      padding: 32px 32px 48px;
+      max-width: 1100px;
+    }
+
+    section {
+      background: var(--bg-alt);
+      border-radius: 12px;
+      padding: 24px 24px 20px;
+      margin-bottom: 20px;
+      border: 1px solid var(--border);
+    }
+
+    section h2 {
+      margin: 0 0 12px;
+      font-size: 1.35rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+
+    p {
+      margin: 0 0 10px;
+      line-height: 1.5;
+    }
+
+    .muted {
+      color: var(--text-muted);
+    }
+
+    .tagline {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .keywords {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* Lists */
+    .pub-list,
+    .simple-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .pub-item {
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+    }
+
+    .pub-title {
+      font-weight: 500;
+    }
+
+    .pub-authors {
+      color: var(--text-muted);
+    }
+
+    .pub-meta {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .simple-list li {
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+      font-size: 0.95rem;
+    }
+
+    .contact-item-label {
+      font-weight: 500;
+    }
+
+    /* Small screens */
+    @media (max-width: 860px) {
+      .sidebar {
+        position: static;
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+        padding: 16px 16px;
+      }
+
+      .sidebar-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .profile-pic {
+        width: 64px;
+        height: 64px;
+        margin: 0;
+      }
+
+      .sidebar-main {
+        flex: 1;
+      }
+
+      .sidebar-nav-wrapper {
+        display: none; /* hide full nav on very small screens; optional */
+      }
+
+      .main {
+        margin-left: 0;
+        padding: 16px 16px 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-main">
+      <div class="sidebar-header">
+        <div class="profile-pic">
+          <!-- Replace with your own image in /img/profile.jpg and update src -->
+          <img src="https://via.placeholder.com/300x300.png?text=Profile" alt="Profile picture" />
+        </div>
+        <div>
+          <h1 class="name">Julian Garneau</h1>
+          <div class="title">Microbiome & phage researcher</div>
+          <div class="affiliation">[Your current affiliation, Switzerland]</div>
+        </div>
+      </div>
+
+      <div class="sidebar-nav-wrapper">
+        <div class="sidebar-section-title">Navigation</div>
+        <ul class="nav">
+          <li><a href="#about">About</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#publications">Selected publications</a></li>
+          <li><a href="#software">Tools & resources</a></li>
+          <li><a href="#teaching">Teaching & outreach</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="sidebar-section-title">Links</div>
+        <div class="sidebar-links">
+          <a href="https://scholar.google.ca/citations?user=FdkHWGYAAAAJ&hl=fr" target="_blank">Google Scholar</a>
+          <a href="https://github.com/JulianGarneau" target="_blank">GitHub</a>
+          <!-- Replace with ORCID / Twitter / LinkedIn if you wish -->
+          <!-- <a href="#" target="_blank">ORCID</a> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-footer">
+      <div>Last updated: 2025</div>
+      <div>Hosted with GitHub Pages.</div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+    <!-- ABOUT -->
+    <section id="about">
+      <h2>About</h2>
+      <p class="tagline">
+        I study how bacteria, phages, and the host interact to shape gut ecosystems and influence health and disease.
+      </p>
+      <p>
+        I am a researcher working on microbial ecology, bacteriophages, and host–microbe interactions, with a focus on
+        how microbial communities and phage-derived tools can be leveraged to interrogate and modulate the gut microbiota.
+        My work combines <strong>wet-lab microbiology</strong>, <strong>genomics</strong>, and
+        <strong>computational approaches</strong> to understand how specific microbes and their phages contribute to
+        ecosystem function, cancer risk, and therapeutic responses.
+      </p>
+      <p>
+        I am particularly interested in <em>precision microbiome engineering</em>, including the development of
+        phage-derived lysins and other targeted strategies to reshape microbial communities in a controlled and
+        mechanistic way.
+      </p>
+      <p class="keywords">
+        Keywords: gut microbiota, bacteriophages, lysins, cancer microbiome, microbial ecology, host–microbe interactions,
+        genomics, bioinformatics.
+      </p>
+    </section>
+
+    <!-- RESEARCH -->
+    <section id="research">
+      <h2>Research</h2>
+      <p>
+        My research spans several interconnected themes:
+      </p>
+
+      <ul class="simple-list">
+        <li><strong>Phage–bacteria interactions in the gut:</strong> How phages and phage-derived enzymes shape the
+          structure and function of small-intestinal and colonic microbial communities.</li>
+        <li><strong>Microbiome and cancer:</strong> Exploring how specific bacteria and microbial consortia contribute to
+          colon and pancreatic cancer initiation, progression, and treatment response.</li>
+        <li><strong>Precision microbiome engineering:</strong> Designing targeted interventions (e.g., phage lysins,
+          tailored consortia) to selectively perturb or restore microbial ecosystems.</li>
+        <li><strong>Computational pipelines for microbiome & virome data:</strong> Developing reproducible workflows for
+          genome assembly, gene cluster annotation, functional profiling, and visualization.</li>
+      </ul>
+
+      <p>
+        For an up-to-date list of publications, please see my
+        <a href="https://scholar.google.ca/citations?user=FdkHWGYAAAAJ&hl=fr" target="_blank">Google Scholar profile</a>.
+      </p>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section id="publications">
+      <h2>Selected publications</h2>
+
+      <p class="muted">
+        This is a short selection; please see Google Scholar for the full list. Replace these placeholders with your own papers.
+      </p>
+
+      <ul class="pub-list">
+        <li class="pub-item">
+          <div class="pub-authors">Garneau J, <em>et al.</em></div>
+          <div class="pub-title">Title of your key paper on phage-derived lysins and gut microbiota.</div>
+          <div class="pub-meta">Journal Name · Year ·
+            <a href="#" target="_blank">PDF / link</a>
+          </div>
+        </li>
+
+        <li class="pub-item">
+          <div class="pub-authors">Garneau J, <em>et al.</em></div>
+          <div class="pub-title">Title of your paper on microbiome–host interactions in cancer.</div>
+          <div class="pub-meta">Journal Name · Year ·
+            <a href="#" target="_blank">PDF / link</a>
+          </div>
+        </li>
+
+        <li class="pub-item">
+          <div class="pub-authors">Garneau J, <em>et al.</em></div>
+          <div class="pub-title">Title of your paper on virome analysis workflow or genome-resolved metagenomics.</div>
+          <div class="pub-meta">Journal Name · Year ·
+            <a href="#" target="_blank">PDF / link</a>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- SOFTWARE / TOOLS -->
+    <section id="software">
+      <h2>Tools & resources</h2>
+      <ul class="simple-list">
+        <li><strong>Custom pipelines for virome and microbiome analysis:</strong> Workflows for assembly, annotation,
+          and visualization of phage and bacterial genomes (Snakemake / bash / Python / R).</li>
+        <li><strong>Scripts for gene cluster extraction and visualization:</strong> Automation of BLAST-based region extraction,
+          orientation, and Clinker-ready visualization of genomic neighborhoods.</li>
+        <li><strong>Reproducible analysis notebooks:</strong> R and Python notebooks for statistical analysis, network
+          inference, and figure generation.</li>
+      </ul>
+      <p class="muted">
+        Selected code and pipelines are available on my
+        <a href="https://github.com/JulianGarneau" target="_blank">GitHub profile</a>.
+      </p>
+    </section>
+
+    <!-- TEACHING -->
+    <section id="teaching">
+      <h2>Teaching & outreach</h2>
+      <ul class="simple-list">
+        <li>Supervision and mentoring of students in microbiology, genomics, and bioinformatics projects.</li>
+        <li>Workshops and informal training on sequencing data analysis, reproducible pipelines, and good practices in
+          computational microbiology.</li>
+        <li>Interest in communicating microbiome and phage research to broader audiences, including clinicians and
+          non-specialists.</li>
+      </ul>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="contact-grid">
+        <div>
+          <div class="contact-item-label">Email</div>
+          <div>
+            <!-- Replace with your preferred email address -->
+            <a href="mailto:your.email@domain">your.email@domain</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="contact-item-label">GitHub</div>
+          <div>
+            <a href="https://github.com/JulianGarneau" target="_blank">github.com/JulianGarneau</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="contact-item-label">Google Scholar</div>
+          <div>
+            <a href="https://scholar.google.ca/citations?user=FdkHWGYAAAAJ&hl=fr" target="_blank">
+              scholar.google.com – Julian Garneau
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <div class="contact-item-label">Location</div>
+          <div>Switzerland</div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+</body>
+</html>
