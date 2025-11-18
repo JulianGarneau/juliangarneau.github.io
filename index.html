@@ -2,469 +2,515 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Julian Garneau – Researcher</title>
+  <title>Julian Garneau</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Personal academic webpage of Julian Garneau." />
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
-
+  <meta name="description" content="Research webpage of Julian Garneau." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
       --bg: #f5f5f7;
-      --bg-alt: #ffffff;
-      --accent: #0066cc;
-      --text-main: #222222;
-      --text-muted: #666666;
-      --border: #dddddd;
+      --card: #ffffff;
+      --accent: #2563eb;
+      --accent-soft: rgba(37,99,235,0.1);
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.12);
     }
 
-    * {
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
 
-    body {
+    html, body {
       margin: 0;
-      font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: var(--bg);
-      color: var(--text-main);
+      padding: 0;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
     }
 
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-    a:hover {
-      text-decoration: underline;
-    }
-
-    /* Layout */
     .page {
-      display: flex;
       min-height: 100vh;
-    }
-
-    .sidebar {
-      width: 280px;
-      background: #111827;
-      color: #e5e7eb;
-      padding: 32px 24px;
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      left: 0;
+      padding: 32px 16px 48px;
       display: flex;
-      flex-direction: column;
-      gap: 24px;
+      justify-content: center;
     }
 
-    .sidebar-header {
-      text-align: left;
+    .container {
+      width: 100%;
+      max-width: 980px;
+      background-color: var(--card);
+      border-radius: 18px;
+      padding: 32px 24px 32px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.15);
     }
 
-    .name {
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin: 0 0 4px 0;
+    @media (min-width: 900px) {
+      .container {
+        padding: 40px 48px 40px;
+      }
     }
 
-    .title {
-      font-size: 0.95rem;
-      color: #9ca3af;
-      margin-bottom: 8px;
+    header {
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
     }
 
-    .affiliation {
-      font-size: 0.9rem;
-      color: #9ca3af;
+    .top-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px 24px;
+      justify-content: space-between;
     }
 
-    .profile-pic {
-      width: 120px;
-      height: 120px;
+    .name-block {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .avatar {
+      width: 72px;
+      height: 72px;
       border-radius: 999px;
       overflow: hidden;
-      border: 2px solid #374151;
-      margin-bottom: 12px;
+      border: 2px solid var(--border);
+      background: linear-gradient(135deg, #dbeafe, #e5e7eb);
+      flex-shrink: 0;
     }
 
-    .profile-pic img {
+    .avatar img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
 
-    .sidebar-section-title {
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #9ca3af;
-      margin-bottom: 6px;
-    }
-
-    .nav {
-      list-style: none;
-      padding: 0;
+    .name {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
       margin: 0;
-      font-size: 0.92rem;
     }
 
-    .nav li {
-      margin-bottom: 6px;
+    .subtitle {
+      margin: 4px 0 0;
+      font-size: 0.95rem;
+      color: var(--muted);
     }
 
-    .nav a {
-      color: #e5e7eb;
-      text-decoration: none;
-      padding: 4px 0;
-      display: inline-block;
-    }
-
-    .nav a:hover {
-      color: #60a5fa;
-    }
-
-    .sidebar-links {
+    .affiliation {
       font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 3px;
     }
 
-    .sidebar-links a {
-      display: block;
-      margin-bottom: 4px;
-      color: #e5e7eb;
+    /* Social badges row */
+    .social-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-start;
     }
 
-    .sidebar-links a span {
-      color: #9ca3af;
-      font-size: 0.85rem;
+    .social-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border-radius: 999px;
+      padding: 6px 11px 6px 6px;
+      background-color: var(--accent-soft);
+      color: var(--text);
+      font-size: 0.78rem;
+      border: 1px solid rgba(37, 99, 235, 0.25);
+      text-decoration: none;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
     }
 
-    .sidebar-footer {
-      margin-top: auto;
-      font-size: 0.75rem;
-      color: #6b7280;
+    .social-badge:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(37, 99, 235, 0.25);
+      background-color: rgba(37, 99, 235, 0.16);
+      text-decoration: none;
     }
 
-    /* Main content */
-    .main {
-      margin-left: 280px;
-      width: 100%;
-      padding: 32px 32px 48px;
-      max-width: 1100px;
+    .social-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background-color: #ffffff;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--accent);
     }
 
+    .social-label {
+      white-space: nowrap;
+    }
+
+    /* Hero text */
+    .hero {
+      margin-top: 18px;
+    }
+
+    .hero h1 {
+      font-size: 1.6rem;
+      margin: 0 0 6px;
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: 0.98rem;
+      color: var(--muted);
+    }
+
+    /* Sections */
     section {
-      background: var(--bg-alt);
-      border-radius: 12px;
-      padding: 24px 24px 20px;
-      margin-bottom: 20px;
-      border: 1px solid var(--border);
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
     }
 
-    section h2 {
+    section:last-of-type {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 0 0 8px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
       margin: 0 0 12px;
-      font-size: 1.35rem;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 8px;
     }
 
     p {
+      font-size: 0.96rem;
+      line-height: 1.55;
       margin: 0 0 10px;
-      line-height: 1.5;
     }
 
-    .muted {
-      color: var(--text-muted);
+    ul {
+      margin: 0;
+      padding-left: 20px;
     }
 
-    .tagline {
-      font-size: 1rem;
-      color: var(--text-muted);
-      margin-bottom: 8px;
+    li {
+      margin-bottom: 6px;
+      font-size: 0.95rem;
     }
 
-    .keywords {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
+    .muted { color: var(--muted); }
 
-    /* Lists */
-    .pub-list,
-    .simple-list {
+    .pub-list {
       list-style: none;
       padding-left: 0;
-      margin: 0;
     }
 
     .pub-item {
-      margin-bottom: 12px;
-      font-size: 0.95rem;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed rgba(209,213,219,0.8);
+    }
+
+    .pub-item:last-of-type {
+      border-bottom: none;
+      padding-bottom: 0;
     }
 
     .pub-title {
       font-weight: 500;
+      margin-bottom: 3px;
     }
 
     .pub-authors {
-      color: var(--text-muted);
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 2px;
     }
 
     .pub-meta {
-      font-size: 0.9rem;
-      color: var(--text-muted);
+      font-size: 0.87rem;
+      color: var(--muted);
     }
 
-    .simple-list li {
-      margin-bottom: 6px;
-      font-size: 0.95rem;
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      background-color: #eff6ff;
+      color: #1d4ed8;
+      padding: 2px 8px;
+      font-size: 0.78rem;
+      border: 1px solid #bfdbfe;
     }
 
-    /* Contact */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 12px;
-      font-size: 0.95rem;
+    .footer-note {
+      margin-top: 20px;
+      font-size: 0.78rem;
+      color: #9ca3af;
+      text-align: right;
     }
 
-    .contact-item-label {
-      font-weight: 500;
-    }
-
-    /* Small screens */
-    @media (max-width: 860px) {
-      .sidebar {
-        position: static;
-        width: 100%;
-        flex-direction: row;
-        align-items: center;
-        gap: 16px;
-        padding: 16px 16px;
-      }
-
-      .sidebar-header {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-
-      .profile-pic {
-        width: 64px;
-        height: 64px;
-        margin: 0;
-      }
-
-      .sidebar-main {
-        flex: 1;
-      }
-
-      .sidebar-nav-wrapper {
-        display: none; /* hide full nav on very small screens; optional */
-      }
-
-      .main {
-        margin-left: 0;
-        padding: 16px 16px 32px;
-      }
+    @media (max-width: 640px) {
+      header { padding-bottom: 16px; }
+      .container { padding: 24px 16px 24px; }
+      .name { font-size: 1.5rem; }
+      .hero h1 { font-size: 1.45rem; }
+      .avatar { width: 60px; height: 60px; }
     }
   </style>
 </head>
 <body>
 
 <div class="page">
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="sidebar-main">
-      <div class="sidebar-header">
-        <div class="profile-pic">
-          <!-- Replace with your own image in /img/profile.jpg and update src -->
-          <img src="https://via.placeholder.com/300x300.png?text=Profile" alt="Profile picture" />
+  <main class="container">
+
+    <!-- HEADER / HERO -->
+    <header>
+      <div class="top-row">
+        <div class="name-block">
+          <div class="avatar">
+            <!-- TODO: Replace with your own image (e.g. /img/julian.jpg) -->
+            <img src="https://via.placeholder.com/300x300.png?text=JG" alt="Julian Garneau" />
+          </div>
+          <div>
+            <h2 class="name">Julian Garneau</h2>
+            <p class="subtitle">Microbiome & phage researcher</p>
+            <p class="affiliation">[Your current position & affiliation, Switzerland]</p>
+          </div>
         </div>
-        <div>
-          <h1 class="name">Julian Garneau</h1>
-          <div class="title">Microbiome & phage researcher</div>
-          <div class="affiliation">[Your current affiliation, Switzerland]</div>
+
+        <!-- Social badges -->
+        <div class="social-row">
+          <!-- Google Scholar -->
+          <a class="social-badge"
+             href="https://scholar.google.ca/citations?user=FdkHWGYAAAAJ&hl=fr"
+             target="_blank" rel="noopener">
+            <span class="social-icon">G</span>
+            <span class="social-label">Google Scholar</span>
+          </a>
+
+          <!-- ResearchGate (TODO: update URL to your profile) -->
+          <a class="social-badge"
+             href="https://www.researchgate.net/"
+             target="_blank" rel="noopener">
+            <span class="social-icon">RG</span>
+            <span class="social-label">ResearchGate</span>
+          </a>
+
+          <!-- GitHub -->
+          <a class="social-badge"
+             href="https://github.com/JulianGarneau"
+             target="_blank" rel="noopener">
+            <span class="social-icon">GH</span>
+            <span class="social-label">GitHub</span>
+          </a>
+
+          <!-- ORCID (optional – replace with your ID or remove) -->
+          <a class="social-badge"
+             href="https://orcid.org/"
+             target="_blank" rel="noopener">
+            <span class="social-icon">ID</span>
+            <span class="social-label">ORCID</span>
+          </a>
         </div>
       </div>
 
-      <div class="sidebar-nav-wrapper">
-        <div class="sidebar-section-title">Navigation</div>
-        <ul class="nav">
-          <li><a href="#about">About</a></li>
-          <li><a href="#research">Research</a></li>
-          <li><a href="#publications">Selected publications</a></li>
-          <li><a href="#software">Tools & resources</a></li>
-          <li><a href="#teaching">Teaching & outreach</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-
-        <div class="sidebar-section-title">Links</div>
-        <div class="sidebar-links">
-          <a href="https://scholar.google.ca/citations?user=FdkHWGYAAAAJ&hl=fr" target="_blank">Google Scholar</a>
-          <a href="https://github.com/JulianGarneau" target="_blank">GitHub</a>
-          <!-- Replace with ORCID / Twitter / LinkedIn if you wish -->
-          <!-- <a href="#" target="_blank">ORCID</a> -->
-        </div>
+      <div class="hero">
+        <h1>Hi! I’m Julian 👋</h1>
+        <p>
+          I study how bacteria, phages, and the host interact to shape gut ecosystems and influence health and disease,
+          with a focus on small-intestinal communities, cancer, and precision microbiome engineering.
+        </p>
       </div>
-    </div>
+    </header>
 
-    <div class="sidebar-footer">
-      <div>Last updated: 2025</div>
-      <div>Hosted with GitHub Pages.</div>
-    </div>
-  </aside>
-
-  <!-- MAIN CONTENT -->
-  <main class="main">
     <!-- ABOUT -->
     <section id="about">
-      <h2>About</h2>
-      <p class="tagline">
-        I study how bacteria, phages, and the host interact to shape gut ecosystems and influence health and disease.
+      <div class="section-title">
+        <span>About me</span>
+      </div>
+      <p>
+        I am a microbiome and phage researcher interested in how microbial communities and their mobile genetic elements
+        contribute to host health, disease risk, and treatment response. My work combines
+        <strong>wet-lab microbiology</strong>, <strong>genomics</strong> and
+        <strong>computational analysis</strong> to dissect bacteria–bacteria and bacteria–host interactions at
+        strain-level resolution.
       </p>
       <p>
-        I am a researcher working on microbial ecology, bacteriophages, and host–microbe interactions, with a focus on
-        how microbial communities and phage-derived tools can be leveraged to interrogate and modulate the gut microbiota.
-        My work combines <strong>wet-lab microbiology</strong>, <strong>genomics</strong>, and
-        <strong>computational approaches</strong> to understand how specific microbes and their phages contribute to
-        ecosystem function, cancer risk, and therapeutic responses.
+        A major focus of my research is on <em>precision microbiome engineering</em>, including the development and
+        application of phage-derived lysins and other targeted tools to reshape microbial communities in a controlled,
+        mechanistic way. I am also interested in how oral bacteria, small-intestinal consortia and butyrate producers
+        influence colon and pancreatic cancer initiation, progression and resolution.
       </p>
-      <p>
-        I am particularly interested in <em>precision microbiome engineering</em>, including the development of
-        phage-derived lysins and other targeted strategies to reshape microbial communities in a controlled and
-        mechanistic way.
-      </p>
-      <p class="keywords">
-        Keywords: gut microbiota, bacteriophages, lysins, cancer microbiome, microbial ecology, host–microbe interactions,
-        genomics, bioinformatics.
+      <p class="muted">
+        Keywords: gut microbiota, bacteriophages, lysins, cancer microbiome, microbial ecology, mobile genetic elements,
+        functional profiling, host–microbe interactions.
       </p>
     </section>
 
     <!-- RESEARCH -->
     <section id="research">
-      <h2>Research</h2>
-      <p>
-        My research spans several interconnected themes:
-      </p>
-
-      <ul class="simple-list">
-        <li><strong>Phage–bacteria interactions in the gut:</strong> How phages and phage-derived enzymes shape the
-          structure and function of small-intestinal and colonic microbial communities.</li>
-        <li><strong>Microbiome and cancer:</strong> Exploring how specific bacteria and microbial consortia contribute to
-          colon and pancreatic cancer initiation, progression, and treatment response.</li>
-        <li><strong>Precision microbiome engineering:</strong> Designing targeted interventions (e.g., phage lysins,
-          tailored consortia) to selectively perturb or restore microbial ecosystems.</li>
-        <li><strong>Computational pipelines for microbiome & virome data:</strong> Developing reproducible workflows for
-          genome assembly, gene cluster annotation, functional profiling, and visualization.</li>
+      <div class="section-title">
+        <span>Research interests</span>
+      </div>
+      <p>Current themes I’m working on include:</p>
+      <ul>
+        <li><strong>Phage–bacteria interactions in the gut:</strong> ecological and evolutionary principles governing
+          phage-driven modulation of small-intestinal and colonic communities.</li>
+        <li><strong>Microbiome and cancer:</strong> roles of specific taxa and consortia in colon and pancreatic cancer
+          onset, progression and therapeutic response.</li>
+        <li><strong>Precision microbiome engineering:</strong> phage-derived lysins and other targeted approaches to
+          selectively remove or protect defined members of microbial ecosystems.</li>
+        <li><strong>Reproducible pipelines for microbiome & virome data:</strong> workflows for genome assembly, gene
+          cluster extraction, functional annotation, network inference and visualization.</li>
       </ul>
-
-      <p>
-        For an up-to-date list of publications, please see my
-        <a href="https://scholar.google.ca/citations?user=FdkHWGYAAAAJ&hl=fr" target="_blank">Google Scholar profile</a>.
-      </p>
     </section>
 
     <!-- PUBLICATIONS -->
     <section id="publications">
-      <h2>Selected publications</h2>
-
-      <p class="muted">
-        This is a short selection; please see Google Scholar for the full list. Replace these placeholders with your own papers.
+      <div class="section-title">
+        <span>Selected publications</span>
+        <span class="pill">See also Google Scholar</span>
+      </div>
+      <p class="section-subtitle">
+        This is a short selection; for a complete and up-to-date list, please visit my
+        <a href="https://scholar.google.ca/citations?user=FdkHWGYAAAAJ&hl=fr" target="_blank" rel="noopener">
+          Google Scholar profile
+        </a>.
       </p>
 
+      <!-- TODO: Replace the placeholders below with your own papers -->
       <ul class="pub-list">
         <li class="pub-item">
+          <div class="pub-title">[Title of your key paper on phage-derived lysins and gut microbiota]</div>
           <div class="pub-authors">Garneau J, <em>et al.</em></div>
-          <div class="pub-title">Title of your key paper on phage-derived lysins and gut microbiota.</div>
-          <div class="pub-meta">Journal Name · Year ·
-            <a href="#" target="_blank">PDF / link</a>
+          <div class="pub-meta">Journal · Year ·
+            <a href="#" target="_blank" rel="noopener">Link</a>
           </div>
         </li>
 
         <li class="pub-item">
+          <div class="pub-title">[Title of your work on cancer-associated microbiota and microbial ecology]</div>
           <div class="pub-authors">Garneau J, <em>et al.</em></div>
-          <div class="pub-title">Title of your paper on microbiome–host interactions in cancer.</div>
-          <div class="pub-meta">Journal Name · Year ·
-            <a href="#" target="_blank">PDF / link</a>
+          <div class="pub-meta">Journal · Year ·
+            <a href="#" target="_blank" rel="noopener">Link</a>
           </div>
         </li>
 
         <li class="pub-item">
+          <div class="pub-title">[Title of your paper on virome/functional profiling, gene clusters, or MGEs]</div>
           <div class="pub-authors">Garneau J, <em>et al.</em></div>
-          <div class="pub-title">Title of your paper on virome analysis workflow or genome-resolved metagenomics.</div>
-          <div class="pub-meta">Journal Name · Year ·
-            <a href="#" target="_blank">PDF / link</a>
+          <div class="pub-meta">Journal · Year ·
+            <a href="#" target="_blank" rel="noopener">Link</a>
           </div>
         </li>
       </ul>
     </section>
 
-    <!-- SOFTWARE / TOOLS -->
-    <section id="software">
-      <h2>Tools & resources</h2>
-      <ul class="simple-list">
-        <li><strong>Custom pipelines for virome and microbiome analysis:</strong> Workflows for assembly, annotation,
-          and visualization of phage and bacterial genomes (Snakemake / bash / Python / R).</li>
-        <li><strong>Scripts for gene cluster extraction and visualization:</strong> Automation of BLAST-based region extraction,
-          orientation, and Clinker-ready visualization of genomic neighborhoods.</li>
-        <li><strong>Reproducible analysis notebooks:</strong> R and Python notebooks for statistical analysis, network
-          inference, and figure generation.</li>
-      </ul>
+    <!-- PUBLIC ENGAGEMENT -->
+    <section id="public-engagement">
+      <div class="section-title">
+        <span>Public engagement</span>
+      </div>
+      <p>
+        I’m interested in communicating microbiome and phage research to a broad audience, including clinicians,
+        policymakers and non-specialists. This includes explaining how microbial ecosystems are linked to cancer risk,
+        how phages can be used as precision tools, and how microbiome-based interventions might be translated into the
+        clinic.
+      </p>
       <p class="muted">
-        Selected code and pipelines are available on my
-        <a href="https://github.com/JulianGarneau" target="_blank">GitHub profile</a>.
+        <!-- TODO: Add links to talks, interviews, blog posts, videos, etc. -->
+        You can list selected talks, interviews or outreach activities here (e.g. podcast appearances, public lectures,
+        YouTube videos, explainers).
       </p>
     </section>
 
-    <!-- TEACHING -->
-    <section id="teaching">
-      <h2>Teaching & outreach</h2>
-      <ul class="simple-list">
-        <li>Supervision and mentoring of students in microbiology, genomics, and bioinformatics projects.</li>
-        <li>Workshops and informal training on sequencing data analysis, reproducible pipelines, and good practices in
-          computational microbiology.</li>
-        <li>Interest in communicating microbiome and phage research to broader audiences, including clinicians and
-          non-specialists.</li>
+    <!-- BLOGS & MEDIA -->
+    <section id="blogs-media">
+      <div class="section-title">
+        <span>Blogs & media</span>
+      </div>
+      <p class="muted">
+        <!-- TODO: Fill with real items -->
+        Add links here to blog posts, news coverage, perspectives or commentary pieces that feature or involve your work.
+      </p>
+      <ul>
+        <li>Example: <a href="#" target="_blank" rel="noopener">Title of an article or blog post about your research</a></li>
+        <li>Example: <a href="#" target="_blank" rel="noopener">Interview or piece on microbiome / phage-based therapies</a></li>
       </ul>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact">
-      <h2>Contact</h2>
-      <div class="contact-grid">
-        <div>
-          <div class="contact-item-label">Email</div>
-          <div>
-            <!-- Replace with your preferred email address -->
-            <a href="mailto:your.email@domain">your.email@domain</a>
-          </div>
-        </div>
-
-        <div>
-          <div class="contact-item-label">GitHub</div>
-          <div>
-            <a href="https://github.com/JulianGarneau" target="_blank">github.com/JulianGarneau</a>
-          </div>
-        </div>
-
-        <div>
-          <div class="contact-item-label">Google Scholar</div>
-          <div>
-            <a href="https://scholar.google.ca/citations?user=FdkHWGYAAAAJ&hl=fr" target="_blank">
-              scholar.google.com – Julian Garneau
-            </a>
-          </div>
-        </div>
-
-        <div>
-          <div class="contact-item-label">Location</div>
-          <div>Switzerland</div>
-        </div>
+    <!-- CONFERENCE TALKS -->
+    <section id="talks">
+      <div class="section-title">
+        <span>Conference talks & seminars</span>
       </div>
+      <p class="muted">
+        Highlight a few invited talks, conference presentations or seminar series where you presented your work.
+      </p>
+      <ul>
+        <li>[Year] Title of talk – Conference / meeting name</li>
+        <li>[Year] Title of talk – Institution / seminar series</li>
+      </ul>
     </section>
+
+    <!-- SOFTWARE & RESOURCES -->
+    <section id="software">
+      <div class="section-title">
+        <span>Software & resources</span>
+      </div>
+      <p>
+        I develop and maintain custom pipelines and scripts for microbiome and virome analysis, including:
+      </p>
+      <ul>
+        <li>Workflows for phage and bacterial genome assembly, gene cluster extraction, and functional annotation.</li>
+        <li>Pipelines for region extraction around genes of interest, orientation, and visualisation (e.g. Clinker-ready
+          outputs).</li>
+        <li>R and Python notebooks for statistical analysis, ecological modelling, network inference and figure
+          generation.</li>
+      </ul>
+      <p class="muted">
+        Selected code and resources are (or will be) available on
+        <a href="https://github.com/JulianGarneau" target="_blank" rel="noopener">GitHub</a>.
+      </p>
+    </section>
+
+    <section id="contact">
+      <div class="section-title">
+        <span>Contact</span>
+      </div>
+      <p>
+        <!-- TODO: Replace with your preferred email -->
+        Email: <a href="mailto:your.email@domain">your.email@domain</a>
+      </p>
+      <p class="muted">
+        I’m happy to discuss collaborations, project ideas or mentoring opportunities related to microbiome, phages,
+        microbial ecology and cancer.
+      </p>
+    </section>
+
+    <div class="footer-note">
+      Last updated: 2025 · Hosted with GitHub Pages
+    </div>
+
   </main>
 </div>
 
